@@ -7,4 +7,9 @@ FurryRobot::App.controllers  do
     REDIS.lpush params[:kind], params[:url]
     render :form
   end
+
+  get :index, :with => :kind do
+    urls = REDIS.lrange(params[:kind], 0, -1)
+    render :slim, "img src=\"#{urls.sample || ''}\""
+  end
 end
