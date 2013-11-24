@@ -1,1 +1,4 @@
-h1 form
+- form_tag '/' do
+  - field_set_tag do
+    = select_tag :kind, options: [:success, :failure]
+    = text_field_tag :url, :value => params[:url]
