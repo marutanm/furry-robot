@@ -1,10 +1,10 @@
 FurryRobot::App.controllers  do
   get :index do
-    render :form
+    render :form, locals: { success: REDIS.lrange(:success, 0, -1), failure: REDIS.lrange(:failure, 0, -1) }
   end
 
   post :index do
-    REDIS.set params[:kind], params[:url]
+    REDIS.lpush params[:kind], params[:url]
     render :form
   end
 end

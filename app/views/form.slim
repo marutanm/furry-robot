@@ -2,3 +2,13 @@
   - field_set_tag do
     = select_tag :kind, options: [:success, :failure]
     = text_field_tag :url, :value => params[:url]
+
+h1 success
+- success.each do |s|
+  ul
+    li =s
+
+h1 failure
+- failure.each do |f|
+  ul
+    li =f
